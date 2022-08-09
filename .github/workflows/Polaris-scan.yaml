@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Run Polaris tests
-        uses: vamsi-devops/polaris-action@master
+        uses: prernagarg05/polaris-action@v2
         with: 
           server_url: ${{ secrets.POLARIS_SERVER_URL }} # (Required)
           access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }} # (Required)
