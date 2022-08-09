@@ -14,10 +14,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Run Polaris tests
-        uses: vamsi-devops/insecure-bank/polaris-action@v1
+        uses: vamsi-devops/polaris-actions@v2
         with: 
-          server_url: ${{ secrets.POLARIS_SERVER_URL }} # (Required)
-          access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }} # (Required)
+          server_url: ${{ secrets.POLARIS_SERVER_URL }} 
+          access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }} 
           
           #total_issues: 0 # (Not required)
           #new_issues: 0 # (Not required)
