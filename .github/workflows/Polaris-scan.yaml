@@ -13,11 +13,22 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: Run Polaris tests
-        uses: vamsi-devops/polaris-actions@v2
-        with: 
-          server_url: ${{ secrets.POLARIS_SERVER_URL }} 
-          access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }} 
+    
+      - name: Static Analysis with Polaris
+         run:|
+          export server_url=${{ secrets.POLARIS_SERVER_URL}}
+          export access_token=${{ secrets.POLARIS_ACCESS_TOKEN}}
+          wget -q ${{ secrets.POLARIS_SERVER_URL}}/api/tools/polaris_cli-linux64.zip
+          unzip -j polaris_cli-linux64.zip -d /tmp
+          /tmp/polaris analyze -w  
+         with:polaris-actions@v2
+            args:"--polaris.project.name=sig-devsecops/github-io-sample"
+            
+    #  - name: Run Polaris tests
+    #    uses: vamsi-devops/polaris-actions@v2
+    #    with: 
+    #      server_url: ${{ secrets.POLARIS_SERVER_URL }} 
+     #     access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }} 
           
           #total_issues: 0 # (Not required)
           #new_issues: 0 # (Not required)
