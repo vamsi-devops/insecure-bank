@@ -24,11 +24,11 @@ jobs:
          with:polaris-actions@v2
             args:"--polaris.project.name=sig-devsecops/github-io-sample"
             
-    #  - name: Run Polaris tests
-    #    uses: vamsi-devops/polaris-actions@v2
-    #    with: 
-    #      server_url: ${{ secrets.POLARIS_SERVER_URL }} 
-     #     access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }} 
+      - name: Run Polaris tests
+        uses: vamsi-devops/polaris-actions@v2
+        with: 
+          server_url: ${{ secrets.POLARIS_SERVER_URL }} 
+          access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }} 
           
           #total_issues: 0 # (Not required)
           #new_issues: 0 # (Not required)
