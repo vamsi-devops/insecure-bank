@@ -1,0 +1,30 @@
+name: "Polaris Scan Action"
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  coverity_polaris_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Run Polaris tests
+        uses: prernagarg05/polaris-action@v2
+        with: 
+          server_url: ${{ secrets.POLARIS_SERVER_URL }} # (Required)
+          access_token: ${{ secrets.POLARIS_ACCESS_TOKEN }} # (Required)
+          
+          #total_issues: 0 # (Not required)
+          #new_issues: 0 # (Not required)
+          #cli_scan_json_file: .synopsys/polaris/cli-scan.json # (Not required)
+          #command_opts: '' # (Not required)
+      - run: ls 
+      - name: Upload Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: Polaris
+          path: /home/runner/work/insecure-bank/insecure-bank/
