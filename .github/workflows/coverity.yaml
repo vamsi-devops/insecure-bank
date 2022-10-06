@@ -46,14 +46,3 @@ jobs:
         curl -fLsS --user $COV_USER:$COVERITY_PASSPHRASE $COV_URL/api/viewContents/issues/v1/OWASP%20Web%20Top%2010?projectId=$COVERITY_PROJECT > results.json
         if [ $(cat results.json | jq .viewContentsV1.totalRows) -ne 0 ]; then cat results.json | jq .viewContentsV1.rows; exit 1; fi
 
-    - id: changeset
-      name: Get Pull Request Changeset
-      uses: jitterbit/get-changed-files@v1
-    
-
-    - name: Coverity Incremental Scan
-      run: |
-        export PATH=$PATH:$RUNNER_TEMP/$CSA/bin
-        cov-run-desktop --dir idir --url $COV_URL --stream $COVERITY_PROJECT-$GITHUB_BASE_REF --build $BLDCMD
-        cov-run-desktop --dir idir --url $COV_URL --stream $COVERITY_PROJECT-$GITHUB_BASE_REF --present-in-reference false \
-          --ignore-uncapturable-inputs true --exit1-if-defects true ${{ steps.changeset.outputs.added_modified }}
