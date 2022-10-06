@@ -1,4 +1,5 @@
-# Coverity on a GitHub-hosted ephemeral runner
+# Coverity on a GitHub-hosted runner
+
 name: coverity
 
 on:
