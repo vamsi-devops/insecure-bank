@@ -1,5 +1,5 @@
 # Coverity on a GitHub-hosted ephemeral runner
-name: coverity-ephemeral
+name: coverity
 
 on:
   push:
