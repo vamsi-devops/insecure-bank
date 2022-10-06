@@ -3,10 +3,10 @@ name: coverity
 
 on:
   push:
-    branches: [ main, stage, 'releases/**' ]
+    branches: [ master ]
   pull_request:
-    branches: [ main, stage, 'releases/**' ]
-  workflow_dispatch:
+    branches: [ master ]
+  workflow_dispatch:  
 
 jobs:
   coverity:
