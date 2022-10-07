@@ -1,4 +1,4 @@
-# Coverity on a GitHub-hosted runner
+# Coverity on a GitHub-hosted runners
 
 name: coverity
 
