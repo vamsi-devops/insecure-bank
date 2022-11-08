@@ -1,17 +1,47 @@
 version: "1"
+project:
+  name: insecure-bank-master
+  branch: insecure-bank-master
+  revision:
+    name: insecure-bank-master
+    date: "2022-11-08T17:44:33Z"
+capture:
+  build:
+    cleanCommands:
+    - shell: [mvn, -B, -f, pom.xml, clean]
+    buildCommands:
+    - shell: [mvn, -B, -f, pom.xml, install]
+  fileSystem:
+    ears:
+      extensions: [ear]
+      files:
+      - directory: ${project.projectDir}
+    java:
+      files:
+      - directory: ${project.projectDir}
+    javascript:
+      files:
+      - directory: ${project.projectDir}
+      - excludeRegex: node_modules|bower_components|vendor
+    php:
+      files:
+      - directory: ${project.projectDir}
+    python:
+      files:
+      - directory: ${project.projectDir}
+    ruby:
+      files:
+      - directory: ${project.projectDir}
+    typescript:
+      files:
+      - directory: ${project.projectDir}
+    wars:
+      extensions: [war]
+      files:
+      - directory: ${project.projectDir}
+analyze:
+  mode: central
 install:
   coverity:
-    version: latest
-project:
-  name: "sig-devsecops/insecure-bank"
-  branch: "origin/master"
-  revision:
-    name: "sig-devsecops/insecure-bank"
-    date: "2020-10-01T14:25:30Z"
-  captureDir: .synopsys/polaris
-capture:
-  coverity:
-    buildless:
-      project:
-        languages:
-          - "java"
+    version: default
+serverUrl: https://sig-cons-ms-sca.polaris.synopsys.com
