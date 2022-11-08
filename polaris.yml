@@ -1,44 +1,16 @@
 version: "1"
 project:
-  name: insecure-bank-master
-  branch: insecure-bank-master
+  name: insecure-bank
+  branch: ${scm.git.branch}
   revision:
-    name: insecure-bank-master
-    date: "2022-11-08T17:44:33Z"
+    name: ${scm.git.commit}
+    date: ${scm.git.commit.date}
 capture:
   build:
     cleanCommands:
-    - shell: [mvn, -B, -f, pom.xml, clean]
+    - shell: [mvn, -B, clean]
     buildCommands:
-    - shell: [mvn, -B, -f, pom.xml, install]
-  fileSystem:
-    ears:
-      extensions: [ear]
-      files:
-      - directory: ${project.projectDir}
-    java:
-      files:
-      - directory: ${project.projectDir}
-    javascript:
-      files:
-      - directory: ${project.projectDir}
-      - excludeRegex: node_modules|bower_components|vendor
-    php:
-      files:
-      - directory: ${project.projectDir}
-    python:
-      files:
-      - directory: ${project.projectDir}
-    ruby:
-      files:
-      - directory: ${project.projectDir}
-    typescript:
-      files:
-      - directory: ${project.projectDir}
-    wars:
-      extensions: [war]
-      files:
-      - directory: ${project.projectDir}
+    - shell: [mvn, -B, compile]
 analyze:
   mode: central
 install:
