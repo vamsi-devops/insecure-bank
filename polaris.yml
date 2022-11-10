@@ -1,17 +1,19 @@
 version: "1"
+project:
+  name: insecure-bank
+  branch: ${scm.git.branch}
+  revision:
+    name: ${scm.git.commit}
+    date: ${scm.git.commit.date}
+capture:
+  build:
+    cleanCommands:
+    - shell: [mvn, -B, clean]
+    buildCommands:
+    - shell: [mvn, -B, compile]
+analyze:
+  mode: central
 install:
   coverity:
-    version: latest
-project:
-  name: "sig-devsecops/insecure-bank"
-  branch: "origin/master"
-  revision:
-    name: "sig-devsecops/insecure-bank"
-    date: "2020-10-01T14:25:30Z"
-  captureDir: .synopsys/polaris
-capture:
-  coverity:
-    buildless:
-      project:
-        languages:
-          - "java"
+    version: default
+serverUrl: https://sig-cons-ms-sca.polaris.synopsys.com
